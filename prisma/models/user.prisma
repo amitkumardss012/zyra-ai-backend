@@ -1,0 +1,45 @@
+model User {
+  id              BigInt       @id @default(autoincrement())
+  googleId        String?      @unique
+  email           String       @unique
+  name            String
+  avatar          String?
+  
+  gender          Gender?
+  age             Int?
+  
+  // App specific settings
+  preferredMode   ScanningMode @default(NUTRITION)
+  
+  // Auth & Status
+  provider        AuthProvider @default(GOOGLE)
+  isEmailVerified Boolean      @default(false)
+  isActive        Boolean      @default(true)
+  
+  // Metadata for future flexibility (e.g. notifications, settings)
+  metadata        Json?        @default("{}")
+
+  // Timestamps
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([email])
+  @@index([googleId])
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+enum ScanningMode {
+  NUTRITION
+  BEAUTY
+}
+
+enum AuthProvider {
+  GOOGLE
+  EMAIL
+}
