@@ -18,7 +18,6 @@ export const statusCodes = {
 
   CONFLICT: 409,
   TO_MANY_REQUESTS: 429,
-
   
   INTERNAL_SERVER_ERROR: 500,
 };
