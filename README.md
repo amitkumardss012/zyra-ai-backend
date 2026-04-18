@@ -6,6 +6,7 @@ To get started with this template, simply paste this command into your terminal:
 bun create elysia ./elysia-example
 ```
 
+
 ## Development
 To start the development server run:
 ```bash
