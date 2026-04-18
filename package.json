@@ -12,6 +12,7 @@
     "@grotto/logysia": "^0.1.6",
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
+    "backend": ".",
     "dotenv": "^17.4.2",
     "elysia": "latest",
     "elysia-rate-limit": "^4.5.1",
