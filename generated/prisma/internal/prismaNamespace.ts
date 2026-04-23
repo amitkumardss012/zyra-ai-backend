@@ -524,10 +524,17 @@ export const UserScalarFieldEnum = {
   avatar: 'avatar',
   gender: 'gender',
   age: 'age',
-  height: 'height',
-  weight: 'weight',
   dob: 'dob',
   preferredMode: 'preferredMode',
+  skinType: 'skinType',
+  skinConcerns: 'skinConcerns',
+  beautyGoals: 'beautyGoals',
+  height: 'height',
+  weight: 'weight',
+  activityLevel: 'activityLevel',
+  dietaryPreferences: 'dietaryPreferences',
+  allergies: 'allergies',
+  healthGoals: 'healthGoals',
   provider: 'provider',
   isEmailVerified: 'isEmailVerified',
   isActive: 'isActive',
@@ -643,20 +650,6 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -681,6 +674,48 @@ export type EnumScanningModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'ScanningMode[]'
  */
 export type ListEnumScanningModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ScanningMode[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SkinType'
+ */
+export type EnumSkinTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkinType'>
+    
+
+
+/**
+ * Reference to a field of type 'SkinType[]'
+ */
+export type ListEnumSkinTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SkinType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ActivityLevel'
+ */
+export type EnumActivityLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'ActivityLevel[]'
+ */
+export type ListEnumActivityLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActivityLevel[]'>
     
 
 

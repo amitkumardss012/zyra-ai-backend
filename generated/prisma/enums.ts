@@ -19,6 +19,28 @@ export const Gender = {
 export type Gender = (typeof Gender)[keyof typeof Gender]
 
 
+export const SkinType = {
+  OILY: 'OILY',
+  DRY: 'DRY',
+  COMBINATION: 'COMBINATION',
+  SENSITIVE: 'SENSITIVE',
+  NORMAL: 'NORMAL'
+} as const
+
+export type SkinType = (typeof SkinType)[keyof typeof SkinType]
+
+
+export const ActivityLevel = {
+  SEDENTARY: 'SEDENTARY',
+  LIGHTLY_ACTIVE: 'LIGHTLY_ACTIVE',
+  MODERATELY_ACTIVE: 'MODERATELY_ACTIVE',
+  VERY_ACTIVE: 'VERY_ACTIVE',
+  EXTRA_ACTIVE: 'EXTRA_ACTIVE'
+} as const
+
+export type ActivityLevel = (typeof ActivityLevel)[keyof typeof ActivityLevel]
+
+
 export const ScanningMode = {
   NUTRITION: 'NUTRITION',
   BEAUTY: 'BEAUTY'

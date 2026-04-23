@@ -1,18 +1,28 @@
 model User {
-  id       BigInt  @id @default(autoincrement())
-  email    String  @unique
-  name     String
-  avatar   String?
+  id     BigInt  @id @default(autoincrement())
+  email  String  @unique
+  name   String
+  avatar String?
 
   gender Gender?
-  age      Int?
-  height   Float?
-  weight   Float?
-  dob      DateTime?
+  age    Int?
+  dob    DateTime?
 
   // App specific settings
   preferredMode ScanningMode @default(NUTRITION)
-  
+
+  // Beauty mode specific
+  skinType     SkinType?
+  skinConcerns String[]  @default([])
+  beautyGoals  String[]  @default([])
+
+  // Nutrition mode specific
+  height             Float?
+  weight             Float?
+  activityLevel      ActivityLevel?
+  dietaryPreferences String[]       @default([])
+  allergies          String[]       @default([])
+  healthGoals        String[]       @default([])
 
   // Auth & Status
   provider        AuthProvider @default(GOOGLE)
@@ -34,6 +44,22 @@ enum Gender {
   FEMALE
   OTHER
   PREFER_NOT_TO_SAY
+}
+
+enum SkinType {
+  OILY
+  DRY
+  COMBINATION
+  SENSITIVE
+  NORMAL
+}
+
+enum ActivityLevel {
+  SEDENTARY
+  LIGHTLY_ACTIVE
+  MODERATELY_ACTIVE
+  VERY_ACTIVE
+  EXTRA_ACTIVE
 }
 
 enum ScanningMode {

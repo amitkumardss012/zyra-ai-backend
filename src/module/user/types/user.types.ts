@@ -1,4 +1,9 @@
-import { Gender, ScanningMode } from "../../../../generated/prisma/enums";
+import {
+  ActivityLevel,
+  Gender,
+  ScanningMode,
+  SkinType,
+} from "../../../../generated/prisma/enums";
 
 export interface IAuthPayload {
   name: string;
@@ -19,6 +24,13 @@ export interface IUpdateProfileRequest {
   weight?: number;
   dob?: Date;
   preferredMode?: ScanningMode;
+  skinType?: SkinType;
+  skinConcerns?: string[];
+  beautyGoals?: string[];
+  activityLevel?: ActivityLevel;
+  dietaryPreferences?: string[];
+  allergies?: string[];
+  healthGoals?: string[];
   metadata?: Record<string, any>;
 }
 

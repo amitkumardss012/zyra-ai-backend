@@ -47,10 +47,12 @@ export type UserMinAggregateOutputType = {
   avatar: string | null
   gender: $Enums.Gender | null
   age: number | null
-  height: number | null
-  weight: number | null
   dob: Date | null
   preferredMode: $Enums.ScanningMode | null
+  skinType: $Enums.SkinType | null
+  height: number | null
+  weight: number | null
+  activityLevel: $Enums.ActivityLevel | null
   provider: $Enums.AuthProvider | null
   isEmailVerified: boolean | null
   isActive: boolean | null
@@ -65,10 +67,12 @@ export type UserMaxAggregateOutputType = {
   avatar: string | null
   gender: $Enums.Gender | null
   age: number | null
-  height: number | null
-  weight: number | null
   dob: Date | null
   preferredMode: $Enums.ScanningMode | null
+  skinType: $Enums.SkinType | null
+  height: number | null
+  weight: number | null
+  activityLevel: $Enums.ActivityLevel | null
   provider: $Enums.AuthProvider | null
   isEmailVerified: boolean | null
   isActive: boolean | null
@@ -83,10 +87,17 @@ export type UserCountAggregateOutputType = {
   avatar: number
   gender: number
   age: number
-  height: number
-  weight: number
   dob: number
   preferredMode: number
+  skinType: number
+  skinConcerns: number
+  beautyGoals: number
+  height: number
+  weight: number
+  activityLevel: number
+  dietaryPreferences: number
+  allergies: number
+  healthGoals: number
   provider: number
   isEmailVerified: number
   isActive: number
@@ -118,10 +129,12 @@ export type UserMinAggregateInputType = {
   avatar?: true
   gender?: true
   age?: true
-  height?: true
-  weight?: true
   dob?: true
   preferredMode?: true
+  skinType?: true
+  height?: true
+  weight?: true
+  activityLevel?: true
   provider?: true
   isEmailVerified?: true
   isActive?: true
@@ -136,10 +149,12 @@ export type UserMaxAggregateInputType = {
   avatar?: true
   gender?: true
   age?: true
-  height?: true
-  weight?: true
   dob?: true
   preferredMode?: true
+  skinType?: true
+  height?: true
+  weight?: true
+  activityLevel?: true
   provider?: true
   isEmailVerified?: true
   isActive?: true
@@ -154,10 +169,17 @@ export type UserCountAggregateInputType = {
   avatar?: true
   gender?: true
   age?: true
-  height?: true
-  weight?: true
   dob?: true
   preferredMode?: true
+  skinType?: true
+  skinConcerns?: true
+  beautyGoals?: true
+  height?: true
+  weight?: true
+  activityLevel?: true
+  dietaryPreferences?: true
+  allergies?: true
+  healthGoals?: true
   provider?: true
   isEmailVerified?: true
   isActive?: true
@@ -260,10 +282,17 @@ export type UserGroupByOutputType = {
   avatar: string | null
   gender: $Enums.Gender | null
   age: number | null
-  height: number | null
-  weight: number | null
   dob: Date | null
   preferredMode: $Enums.ScanningMode
+  skinType: $Enums.SkinType | null
+  skinConcerns: string[]
+  beautyGoals: string[]
+  height: number | null
+  weight: number | null
+  activityLevel: $Enums.ActivityLevel | null
+  dietaryPreferences: string[]
+  allergies: string[]
+  healthGoals: string[]
   provider: $Enums.AuthProvider
   isEmailVerified: boolean
   isActive: boolean
@@ -302,10 +331,17 @@ export type UserWhereInput = {
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   age?: Prisma.IntNullableFilter<"User"> | number | null
-  height?: Prisma.FloatNullableFilter<"User"> | number | null
-  weight?: Prisma.FloatNullableFilter<"User"> | number | null
   dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFilter<"User"> | $Enums.ScanningMode
+  skinType?: Prisma.EnumSkinTypeNullableFilter<"User"> | $Enums.SkinType | null
+  skinConcerns?: Prisma.StringNullableListFilter<"User">
+  beautyGoals?: Prisma.StringNullableListFilter<"User">
+  height?: Prisma.FloatNullableFilter<"User"> | number | null
+  weight?: Prisma.FloatNullableFilter<"User"> | number | null
+  activityLevel?: Prisma.EnumActivityLevelNullableFilter<"User"> | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.StringNullableListFilter<"User">
+  allergies?: Prisma.StringNullableListFilter<"User">
+  healthGoals?: Prisma.StringNullableListFilter<"User">
   provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
@@ -321,10 +357,17 @@ export type UserOrderByWithRelationInput = {
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
-  height?: Prisma.SortOrderInput | Prisma.SortOrder
-  weight?: Prisma.SortOrderInput | Prisma.SortOrder
   dob?: Prisma.SortOrderInput | Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
+  skinType?: Prisma.SortOrderInput | Prisma.SortOrder
+  skinConcerns?: Prisma.SortOrder
+  beautyGoals?: Prisma.SortOrder
+  height?: Prisma.SortOrderInput | Prisma.SortOrder
+  weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  activityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  dietaryPreferences?: Prisma.SortOrder
+  allergies?: Prisma.SortOrder
+  healthGoals?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -343,10 +386,17 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   age?: Prisma.IntNullableFilter<"User"> | number | null
-  height?: Prisma.FloatNullableFilter<"User"> | number | null
-  weight?: Prisma.FloatNullableFilter<"User"> | number | null
   dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFilter<"User"> | $Enums.ScanningMode
+  skinType?: Prisma.EnumSkinTypeNullableFilter<"User"> | $Enums.SkinType | null
+  skinConcerns?: Prisma.StringNullableListFilter<"User">
+  beautyGoals?: Prisma.StringNullableListFilter<"User">
+  height?: Prisma.FloatNullableFilter<"User"> | number | null
+  weight?: Prisma.FloatNullableFilter<"User"> | number | null
+  activityLevel?: Prisma.EnumActivityLevelNullableFilter<"User"> | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.StringNullableListFilter<"User">
+  allergies?: Prisma.StringNullableListFilter<"User">
+  healthGoals?: Prisma.StringNullableListFilter<"User">
   provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
@@ -362,10 +412,17 @@ export type UserOrderByWithAggregationInput = {
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
-  height?: Prisma.SortOrderInput | Prisma.SortOrder
-  weight?: Prisma.SortOrderInput | Prisma.SortOrder
   dob?: Prisma.SortOrderInput | Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
+  skinType?: Prisma.SortOrderInput | Prisma.SortOrder
+  skinConcerns?: Prisma.SortOrder
+  beautyGoals?: Prisma.SortOrder
+  height?: Prisma.SortOrderInput | Prisma.SortOrder
+  weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  activityLevel?: Prisma.SortOrderInput | Prisma.SortOrder
+  dietaryPreferences?: Prisma.SortOrder
+  allergies?: Prisma.SortOrder
+  healthGoals?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -389,10 +446,17 @@ export type UserScalarWhereWithAggregatesInput = {
   avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
   age?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  height?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
-  weight?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
   dob?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   preferredMode?: Prisma.EnumScanningModeWithAggregatesFilter<"User"> | $Enums.ScanningMode
+  skinType?: Prisma.EnumSkinTypeNullableWithAggregatesFilter<"User"> | $Enums.SkinType | null
+  skinConcerns?: Prisma.StringNullableListFilter<"User">
+  beautyGoals?: Prisma.StringNullableListFilter<"User">
+  height?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  weight?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  activityLevel?: Prisma.EnumActivityLevelNullableWithAggregatesFilter<"User"> | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.StringNullableListFilter<"User">
+  allergies?: Prisma.StringNullableListFilter<"User">
+  healthGoals?: Prisma.StringNullableListFilter<"User">
   provider?: Prisma.EnumAuthProviderWithAggregatesFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
@@ -408,10 +472,17 @@ export type UserCreateInput = {
   avatar?: string | null
   gender?: $Enums.Gender | null
   age?: number | null
-  height?: number | null
-  weight?: number | null
   dob?: Date | string | null
   preferredMode?: $Enums.ScanningMode
+  skinType?: $Enums.SkinType | null
+  skinConcerns?: Prisma.UserCreateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserCreatebeautyGoalsInput | string[]
+  height?: number | null
+  weight?: number | null
+  activityLevel?: $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserCreatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserCreateallergiesInput | string[]
+  healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
   isActive?: boolean
@@ -427,10 +498,17 @@ export type UserUncheckedCreateInput = {
   avatar?: string | null
   gender?: $Enums.Gender | null
   age?: number | null
-  height?: number | null
-  weight?: number | null
   dob?: Date | string | null
   preferredMode?: $Enums.ScanningMode
+  skinType?: $Enums.SkinType | null
+  skinConcerns?: Prisma.UserCreateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserCreatebeautyGoalsInput | string[]
+  height?: number | null
+  weight?: number | null
+  activityLevel?: $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserCreatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserCreateallergiesInput | string[]
+  healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
   isActive?: boolean
@@ -446,10 +524,17 @@ export type UserUpdateInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
+  skinType?: Prisma.NullableEnumSkinTypeFieldUpdateOperationsInput | $Enums.SkinType | null
+  skinConcerns?: Prisma.UserUpdateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserUpdatebeautyGoalsInput | string[]
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserUpdatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserUpdateallergiesInput | string[]
+  healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -465,10 +550,17 @@ export type UserUncheckedUpdateInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
+  skinType?: Prisma.NullableEnumSkinTypeFieldUpdateOperationsInput | $Enums.SkinType | null
+  skinConcerns?: Prisma.UserUpdateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserUpdatebeautyGoalsInput | string[]
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserUpdatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserUpdateallergiesInput | string[]
+  healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -484,10 +576,17 @@ export type UserCreateManyInput = {
   avatar?: string | null
   gender?: $Enums.Gender | null
   age?: number | null
-  height?: number | null
-  weight?: number | null
   dob?: Date | string | null
   preferredMode?: $Enums.ScanningMode
+  skinType?: $Enums.SkinType | null
+  skinConcerns?: Prisma.UserCreateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserCreatebeautyGoalsInput | string[]
+  height?: number | null
+  weight?: number | null
+  activityLevel?: $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserCreatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserCreateallergiesInput | string[]
+  healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
   isActive?: boolean
@@ -503,10 +602,17 @@ export type UserUpdateManyMutationInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
+  skinType?: Prisma.NullableEnumSkinTypeFieldUpdateOperationsInput | $Enums.SkinType | null
+  skinConcerns?: Prisma.UserUpdateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserUpdatebeautyGoalsInput | string[]
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserUpdatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserUpdateallergiesInput | string[]
+  healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -522,16 +628,31 @@ export type UserUncheckedUpdateManyInput = {
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
+  skinType?: Prisma.NullableEnumSkinTypeFieldUpdateOperationsInput | $Enums.SkinType | null
+  skinConcerns?: Prisma.UserUpdateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserUpdatebeautyGoalsInput | string[]
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserUpdatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserUpdateallergiesInput | string[]
+  healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -541,10 +662,17 @@ export type UserCountOrderByAggregateInput = {
   avatar?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  height?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
+  skinType?: Prisma.SortOrder
+  skinConcerns?: Prisma.SortOrder
+  beautyGoals?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  activityLevel?: Prisma.SortOrder
+  dietaryPreferences?: Prisma.SortOrder
+  allergies?: Prisma.SortOrder
+  healthGoals?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -567,10 +695,12 @@ export type UserMaxOrderByAggregateInput = {
   avatar?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  height?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
+  skinType?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  activityLevel?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -585,10 +715,12 @@ export type UserMinOrderByAggregateInput = {
   avatar?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   age?: Prisma.SortOrder
-  height?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
+  skinType?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  activityLevel?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -601,6 +733,26 @@ export type UserSumOrderByAggregateInput = {
   age?: Prisma.SortOrder
   height?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+}
+
+export type UserCreateskinConcernsInput = {
+  set: string[]
+}
+
+export type UserCreatebeautyGoalsInput = {
+  set: string[]
+}
+
+export type UserCreatedietaryPreferencesInput = {
+  set: string[]
+}
+
+export type UserCreateallergiesInput = {
+  set: string[]
+}
+
+export type UserCreatehealthGoalsInput = {
+  set: string[]
 }
 
 export type BigIntFieldUpdateOperationsInput = {
@@ -631,6 +783,28 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type EnumScanningModeFieldUpdateOperationsInput = {
+  set?: $Enums.ScanningMode
+}
+
+export type NullableEnumSkinTypeFieldUpdateOperationsInput = {
+  set?: $Enums.SkinType | null
+}
+
+export type UserUpdateskinConcernsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type UserUpdatebeautyGoalsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type NullableFloatFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
@@ -639,12 +813,23 @@ export type NullableFloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
+export type NullableEnumActivityLevelFieldUpdateOperationsInput = {
+  set?: $Enums.ActivityLevel | null
 }
 
-export type EnumScanningModeFieldUpdateOperationsInput = {
-  set?: $Enums.ScanningMode
+export type UserUpdatedietaryPreferencesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type UserUpdateallergiesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type UserUpdatehealthGoalsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type EnumAuthProviderFieldUpdateOperationsInput = {
@@ -668,10 +853,17 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   avatar?: boolean
   gender?: boolean
   age?: boolean
-  height?: boolean
-  weight?: boolean
   dob?: boolean
   preferredMode?: boolean
+  skinType?: boolean
+  skinConcerns?: boolean
+  beautyGoals?: boolean
+  height?: boolean
+  weight?: boolean
+  activityLevel?: boolean
+  dietaryPreferences?: boolean
+  allergies?: boolean
+  healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
   isActive?: boolean
@@ -687,10 +879,17 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   avatar?: boolean
   gender?: boolean
   age?: boolean
-  height?: boolean
-  weight?: boolean
   dob?: boolean
   preferredMode?: boolean
+  skinType?: boolean
+  skinConcerns?: boolean
+  beautyGoals?: boolean
+  height?: boolean
+  weight?: boolean
+  activityLevel?: boolean
+  dietaryPreferences?: boolean
+  allergies?: boolean
+  healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
   isActive?: boolean
@@ -706,10 +905,17 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   avatar?: boolean
   gender?: boolean
   age?: boolean
-  height?: boolean
-  weight?: boolean
   dob?: boolean
   preferredMode?: boolean
+  skinType?: boolean
+  skinConcerns?: boolean
+  beautyGoals?: boolean
+  height?: boolean
+  weight?: boolean
+  activityLevel?: boolean
+  dietaryPreferences?: boolean
+  allergies?: boolean
+  healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
   isActive?: boolean
@@ -725,10 +931,17 @@ export type UserSelectScalar = {
   avatar?: boolean
   gender?: boolean
   age?: boolean
-  height?: boolean
-  weight?: boolean
   dob?: boolean
   preferredMode?: boolean
+  skinType?: boolean
+  skinConcerns?: boolean
+  beautyGoals?: boolean
+  height?: boolean
+  weight?: boolean
+  activityLevel?: boolean
+  dietaryPreferences?: boolean
+  allergies?: boolean
+  healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
   isActive?: boolean
@@ -737,7 +950,7 @@ export type UserSelectScalar = {
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "gender" | "age" | "height" | "weight" | "dob" | "preferredMode" | "provider" | "isEmailVerified" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "gender" | "age" | "dob" | "preferredMode" | "skinType" | "skinConcerns" | "beautyGoals" | "height" | "weight" | "activityLevel" | "dietaryPreferences" | "allergies" | "healthGoals" | "provider" | "isEmailVerified" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
@@ -749,10 +962,17 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     avatar: string | null
     gender: $Enums.Gender | null
     age: number | null
-    height: number | null
-    weight: number | null
     dob: Date | null
     preferredMode: $Enums.ScanningMode
+    skinType: $Enums.SkinType | null
+    skinConcerns: string[]
+    beautyGoals: string[]
+    height: number | null
+    weight: number | null
+    activityLevel: $Enums.ActivityLevel | null
+    dietaryPreferences: string[]
+    allergies: string[]
+    healthGoals: string[]
     provider: $Enums.AuthProvider
     isEmailVerified: boolean
     isActive: boolean
@@ -1188,10 +1408,17 @@ export interface UserFieldRefs {
   readonly avatar: Prisma.FieldRef<"User", 'String'>
   readonly gender: Prisma.FieldRef<"User", 'Gender'>
   readonly age: Prisma.FieldRef<"User", 'Int'>
-  readonly height: Prisma.FieldRef<"User", 'Float'>
-  readonly weight: Prisma.FieldRef<"User", 'Float'>
   readonly dob: Prisma.FieldRef<"User", 'DateTime'>
   readonly preferredMode: Prisma.FieldRef<"User", 'ScanningMode'>
+  readonly skinType: Prisma.FieldRef<"User", 'SkinType'>
+  readonly skinConcerns: Prisma.FieldRef<"User", 'String[]'>
+  readonly beautyGoals: Prisma.FieldRef<"User", 'String[]'>
+  readonly height: Prisma.FieldRef<"User", 'Float'>
+  readonly weight: Prisma.FieldRef<"User", 'Float'>
+  readonly activityLevel: Prisma.FieldRef<"User", 'ActivityLevel'>
+  readonly dietaryPreferences: Prisma.FieldRef<"User", 'String[]'>
+  readonly allergies: Prisma.FieldRef<"User", 'String[]'>
+  readonly healthGoals: Prisma.FieldRef<"User", 'String[]'>
   readonly provider: Prisma.FieldRef<"User", 'AuthProvider'>
   readonly isEmailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
