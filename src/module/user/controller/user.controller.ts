@@ -1,9 +1,10 @@
 import { Context } from "elysia";
 import { prisma } from "../../../config/prisma";
+import { User } from "../../../types/types";
 import { ErrorResponse, SuccessResponse } from "../../../utils/response.utils";
-import { ScanningMode, User } from "../../../types/types";
+import { IUpdateProfileRequest } from "../types/user.types";
 
-export const getProfile = async ({ user }: { user: User | null }) => {
+export const getProfile = async ({ user }: { user: User }) => {
   if (!user) {
     throw new ErrorResponse("Unauthorized", 401, "UNAUTHORIZED");
   }
@@ -14,29 +15,25 @@ export const getProfile = async ({ user }: { user: User | null }) => {
     },
   });
 
-  SuccessResponse("Profile retrieved successfully", data, 200);
+  console.log({data})
+
+  return SuccessResponse("Profile retrieved successfully", data, 200);
 };
 
-export const setPreferredMode = async ({
+export const updateProfile = async ({
   body,
   user,
-}: Context<{ body: { preferredMode: ScanningMode } }> & { user: User }) => {
-  if (!user) {
+}: Context<{ body: IUpdateProfileRequest }> & { user: User }) => {
+  if(!user){
     throw new ErrorResponse("Unauthorized", 401, "UNAUTHORIZED");
   }
 
-  const updatedUser = await prisma.user.update({
+  const data = await prisma.user.update({
     where: {
       id: user.id,
     },
-    data: {
-      preferredMode: body.preferredMode,
-    },
+    data: body,
   });
 
-  SuccessResponse(
-    "Preferred mode set successfully",
-    { user: updatedUser },
-    200,
-  );
+  return SuccessResponse("Profile updated successfully", data, 200);
 };

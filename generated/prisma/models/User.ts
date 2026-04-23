@@ -29,21 +29,27 @@ export type AggregateUser = {
 export type UserAvgAggregateOutputType = {
   id: number | null
   age: number | null
+  height: number | null
+  weight: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: bigint | null
   age: number | null
+  height: number | null
+  weight: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: bigint | null
-  googleId: string | null
   email: string | null
   name: string | null
   avatar: string | null
   gender: $Enums.Gender | null
   age: number | null
+  height: number | null
+  weight: number | null
+  dob: Date | null
   preferredMode: $Enums.ScanningMode | null
   provider: $Enums.AuthProvider | null
   isEmailVerified: boolean | null
@@ -54,12 +60,14 @@ export type UserMinAggregateOutputType = {
 
 export type UserMaxAggregateOutputType = {
   id: bigint | null
-  googleId: string | null
   email: string | null
   name: string | null
   avatar: string | null
   gender: $Enums.Gender | null
   age: number | null
+  height: number | null
+  weight: number | null
+  dob: Date | null
   preferredMode: $Enums.ScanningMode | null
   provider: $Enums.AuthProvider | null
   isEmailVerified: boolean | null
@@ -70,12 +78,14 @@ export type UserMaxAggregateOutputType = {
 
 export type UserCountAggregateOutputType = {
   id: number
-  googleId: number
   email: number
   name: number
   avatar: number
   gender: number
   age: number
+  height: number
+  weight: number
+  dob: number
   preferredMode: number
   provider: number
   isEmailVerified: number
@@ -90,21 +100,27 @@ export type UserCountAggregateOutputType = {
 export type UserAvgAggregateInputType = {
   id?: true
   age?: true
+  height?: true
+  weight?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
   age?: true
+  height?: true
+  weight?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
-  googleId?: true
   email?: true
   name?: true
   avatar?: true
   gender?: true
   age?: true
+  height?: true
+  weight?: true
+  dob?: true
   preferredMode?: true
   provider?: true
   isEmailVerified?: true
@@ -115,12 +131,14 @@ export type UserMinAggregateInputType = {
 
 export type UserMaxAggregateInputType = {
   id?: true
-  googleId?: true
   email?: true
   name?: true
   avatar?: true
   gender?: true
   age?: true
+  height?: true
+  weight?: true
+  dob?: true
   preferredMode?: true
   provider?: true
   isEmailVerified?: true
@@ -131,12 +149,14 @@ export type UserMaxAggregateInputType = {
 
 export type UserCountAggregateInputType = {
   id?: true
-  googleId?: true
   email?: true
   name?: true
   avatar?: true
   gender?: true
   age?: true
+  height?: true
+  weight?: true
+  dob?: true
   preferredMode?: true
   provider?: true
   isEmailVerified?: true
@@ -235,12 +255,14 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type UserGroupByOutputType = {
   id: bigint
-  googleId: string | null
   email: string
   name: string
   avatar: string | null
   gender: $Enums.Gender | null
   age: number | null
+  height: number | null
+  weight: number | null
+  dob: Date | null
   preferredMode: $Enums.ScanningMode
   provider: $Enums.AuthProvider
   isEmailVerified: boolean
@@ -275,12 +297,14 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.BigIntFilter<"User"> | bigint | number
-  googleId?: Prisma.StringNullableFilter<"User"> | string | null
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   age?: Prisma.IntNullableFilter<"User"> | number | null
+  height?: Prisma.FloatNullableFilter<"User"> | number | null
+  weight?: Prisma.FloatNullableFilter<"User"> | number | null
+  dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFilter<"User"> | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFilter<"User"> | boolean
@@ -292,12 +316,14 @@ export type UserWhereInput = {
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  height?: Prisma.SortOrderInput | Prisma.SortOrder
+  weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  dob?: Prisma.SortOrderInput | Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
@@ -309,7 +335,6 @@ export type UserOrderByWithRelationInput = {
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: bigint | number
-  googleId?: string
   email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
@@ -318,6 +343,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   avatar?: Prisma.StringNullableFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   age?: Prisma.IntNullableFilter<"User"> | number | null
+  height?: Prisma.FloatNullableFilter<"User"> | number | null
+  weight?: Prisma.FloatNullableFilter<"User"> | number | null
+  dob?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFilter<"User"> | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFilter<"User"> | boolean
@@ -325,16 +353,18 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   metadata?: Prisma.JsonNullableFilter<"User">
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-}, "id" | "googleId" | "email">
+}, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  height?: Prisma.SortOrderInput | Prisma.SortOrder
+  weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  dob?: Prisma.SortOrderInput | Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
@@ -354,12 +384,14 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"User"> | bigint | number
-  googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   avatar?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
   age?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  height?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  weight?: Prisma.FloatNullableWithAggregatesFilter<"User"> | number | null
+  dob?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   preferredMode?: Prisma.EnumScanningModeWithAggregatesFilter<"User"> | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderWithAggregatesFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
@@ -371,12 +403,14 @@ export type UserScalarWhereWithAggregatesInput = {
 
 export type UserCreateInput = {
   id?: bigint | number
-  googleId?: string | null
   email: string
   name: string
   avatar?: string | null
   gender?: $Enums.Gender | null
   age?: number | null
+  height?: number | null
+  weight?: number | null
+  dob?: Date | string | null
   preferredMode?: $Enums.ScanningMode
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
@@ -388,12 +422,14 @@ export type UserCreateInput = {
 
 export type UserUncheckedCreateInput = {
   id?: bigint | number
-  googleId?: string | null
   email: string
   name: string
   avatar?: string | null
   gender?: $Enums.Gender | null
   age?: number | null
+  height?: number | null
+  weight?: number | null
+  dob?: Date | string | null
   preferredMode?: $Enums.ScanningMode
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
@@ -405,12 +441,14 @@ export type UserUncheckedCreateInput = {
 
 export type UserUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -422,12 +460,14 @@ export type UserUpdateInput = {
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -439,12 +479,14 @@ export type UserUncheckedUpdateInput = {
 
 export type UserCreateManyInput = {
   id?: bigint | number
-  googleId?: string | null
   email: string
   name: string
   avatar?: string | null
   gender?: $Enums.Gender | null
   age?: number | null
+  height?: number | null
+  weight?: number | null
+  dob?: Date | string | null
   preferredMode?: $Enums.ScanningMode
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
@@ -456,12 +498,14 @@ export type UserCreateManyInput = {
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -473,12 +517,14 @@ export type UserUpdateManyMutationInput = {
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -490,12 +536,14 @@ export type UserUncheckedUpdateManyInput = {
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  dob?: Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
@@ -508,16 +556,20 @@ export type UserCountOrderByAggregateInput = {
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  dob?: Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
@@ -528,12 +580,14 @@ export type UserMaxOrderByAggregateInput = {
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  googleId?: Prisma.SortOrder
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  dob?: Prisma.SortOrder
   preferredMode?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
@@ -545,6 +599,8 @@ export type UserMinOrderByAggregateInput = {
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
 }
 
 export type BigIntFieldUpdateOperationsInput = {
@@ -555,12 +611,12 @@ export type BigIntFieldUpdateOperationsInput = {
   divide?: bigint | number
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -573,6 +629,18 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type EnumScanningModeFieldUpdateOperationsInput = {
@@ -595,12 +663,14 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  googleId?: boolean
   email?: boolean
   name?: boolean
   avatar?: boolean
   gender?: boolean
   age?: boolean
+  height?: boolean
+  weight?: boolean
+  dob?: boolean
   preferredMode?: boolean
   provider?: boolean
   isEmailVerified?: boolean
@@ -612,12 +682,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  googleId?: boolean
   email?: boolean
   name?: boolean
   avatar?: boolean
   gender?: boolean
   age?: boolean
+  height?: boolean
+  weight?: boolean
+  dob?: boolean
   preferredMode?: boolean
   provider?: boolean
   isEmailVerified?: boolean
@@ -629,12 +701,14 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  googleId?: boolean
   email?: boolean
   name?: boolean
   avatar?: boolean
   gender?: boolean
   age?: boolean
+  height?: boolean
+  weight?: boolean
+  dob?: boolean
   preferredMode?: boolean
   provider?: boolean
   isEmailVerified?: boolean
@@ -646,12 +720,14 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type UserSelectScalar = {
   id?: boolean
-  googleId?: boolean
   email?: boolean
   name?: boolean
   avatar?: boolean
   gender?: boolean
   age?: boolean
+  height?: boolean
+  weight?: boolean
+  dob?: boolean
   preferredMode?: boolean
   provider?: boolean
   isEmailVerified?: boolean
@@ -661,19 +737,21 @@ export type UserSelectScalar = {
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "googleId" | "email" | "name" | "avatar" | "gender" | "age" | "preferredMode" | "provider" | "isEmailVerified" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "gender" | "age" | "height" | "weight" | "dob" | "preferredMode" | "provider" | "isEmailVerified" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
-    googleId: string | null
     email: string
     name: string
     avatar: string | null
     gender: $Enums.Gender | null
     age: number | null
+    height: number | null
+    weight: number | null
+    dob: Date | null
     preferredMode: $Enums.ScanningMode
     provider: $Enums.AuthProvider
     isEmailVerified: boolean
@@ -1105,12 +1183,14 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'BigInt'>
-  readonly googleId: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly avatar: Prisma.FieldRef<"User", 'String'>
   readonly gender: Prisma.FieldRef<"User", 'Gender'>
   readonly age: Prisma.FieldRef<"User", 'Int'>
+  readonly height: Prisma.FieldRef<"User", 'Float'>
+  readonly weight: Prisma.FieldRef<"User", 'Float'>
+  readonly dob: Prisma.FieldRef<"User", 'DateTime'>
   readonly preferredMode: Prisma.FieldRef<"User", 'ScanningMode'>
   readonly provider: Prisma.FieldRef<"User", 'AuthProvider'>
   readonly isEmailVerified: Prisma.FieldRef<"User", 'Boolean'>

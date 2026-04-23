@@ -1,7 +1,9 @@
 import { Gender, ScanningMode } from "../../../../generated/prisma/enums";
 
 export interface IAuthPayload {
-  idToken: string;
+  name: string;
+  email: string;
+  avatar: string;
 }
 
 export interface IOnboardingRequest {
@@ -11,10 +13,11 @@ export interface IOnboardingRequest {
 }
 
 export interface IUpdateProfileRequest {
-  name?: string;
-  avatar?: string;
   gender?: Gender;
   age?: number;
+  height?: number;
+  weight?: number;
+  dob?: Date;
   preferredMode?: ScanningMode;
   metadata?: Record<string, any>;
 }

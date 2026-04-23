@@ -3,9 +3,11 @@ import { auth } from "../controller/auth.controller";
 
 const route = new Elysia();
 
-route.post("/auth/google", auth, {
+route.post("/auth", auth, {
   body: t.Object({
-    idToken: t.String()
+    name: t.String(),
+    email: t.String({ email: true }),
+    avatar: t.String({ url: true })
   }),
 });
 

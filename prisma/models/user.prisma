@@ -1,6 +1,5 @@
 model User {
   id       BigInt  @id @default(autoincrement())
-  googleId String? @unique
   email    String  @unique
   name     String
   avatar   String?
@@ -13,6 +12,7 @@ model User {
 
   // App specific settings
   preferredMode ScanningMode @default(NUTRITION)
+  
 
   // Auth & Status
   provider        AuthProvider @default(GOOGLE)
@@ -27,7 +27,6 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@index([email])
-  @@index([googleId])
 }
 
 enum Gender {

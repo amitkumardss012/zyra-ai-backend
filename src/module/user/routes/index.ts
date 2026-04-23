@@ -1,8 +1,9 @@
 import { Elysia } from "elysia";
 import authRoutes from "./auth.routes";
+import userRoutes from "./user.routes";
 
-const userRoutes = new Elysia({ prefix: "/user" });
+const app = new Elysia({ prefix: "/user" });
 
-userRoutes.use(authRoutes);
+app.use(authRoutes).use(userRoutes);
 
-export default userRoutes;
+export default app;
