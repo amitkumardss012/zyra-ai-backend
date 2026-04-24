@@ -5,7 +5,7 @@ const route = new Elysia();
 
 route.post("/auth", auth, {
   body: t.Object({
-    name: t.String(),
+    name: t.String({}),
     email: t.String({ email: true }),
     avatar: t.String({ url: true })
   }),

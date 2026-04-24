@@ -537,6 +537,7 @@ export const UserScalarFieldEnum = {
   healthGoals: 'healthGoals',
   provider: 'provider',
   isEmailVerified: 'isEmailVerified',
+  isProfileCompleted: 'isProfileCompleted',
   isActive: 'isActive',
   metadata: 'metadata',
   createdAt: 'createdAt',

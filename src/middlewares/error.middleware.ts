@@ -1,6 +1,8 @@
+import { ENV } from "../config/env";
 import { ErrorResponse } from "../utils/response.utils";
 
 export const errorHandler = ({ code, error }: { code: any; error: any }) => {
+  ENV.mode === "development" && console.log(code, error);
   if (code === "INTERNAL_SERVER_ERROR") {
     return Response.json(
       {

@@ -15,8 +15,6 @@ export const getProfile = async ({ user }: { user: User }) => {
     },
   });
 
-  console.log({data})
-
   return SuccessResponse("Profile retrieved successfully", data, 200);
 };
 
@@ -32,7 +30,10 @@ export const updateProfile = async ({
     where: {
       id: user.id,
     },
-    data: body,
+    data: {
+      ...body,
+      isProfileCompleted: true,
+    },
   });
 
   return SuccessResponse("Profile updated successfully", data, 200);

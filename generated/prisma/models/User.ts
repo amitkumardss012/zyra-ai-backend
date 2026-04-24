@@ -55,6 +55,7 @@ export type UserMinAggregateOutputType = {
   activityLevel: $Enums.ActivityLevel | null
   provider: $Enums.AuthProvider | null
   isEmailVerified: boolean | null
+  isProfileCompleted: boolean | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -75,6 +76,7 @@ export type UserMaxAggregateOutputType = {
   activityLevel: $Enums.ActivityLevel | null
   provider: $Enums.AuthProvider | null
   isEmailVerified: boolean | null
+  isProfileCompleted: boolean | null
   isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -100,6 +102,7 @@ export type UserCountAggregateOutputType = {
   healthGoals: number
   provider: number
   isEmailVerified: number
+  isProfileCompleted: number
   isActive: number
   metadata: number
   createdAt: number
@@ -137,6 +140,7 @@ export type UserMinAggregateInputType = {
   activityLevel?: true
   provider?: true
   isEmailVerified?: true
+  isProfileCompleted?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -157,6 +161,7 @@ export type UserMaxAggregateInputType = {
   activityLevel?: true
   provider?: true
   isEmailVerified?: true
+  isProfileCompleted?: true
   isActive?: true
   createdAt?: true
   updatedAt?: true
@@ -182,6 +187,7 @@ export type UserCountAggregateInputType = {
   healthGoals?: true
   provider?: true
   isEmailVerified?: true
+  isProfileCompleted?: true
   isActive?: true
   metadata?: true
   createdAt?: true
@@ -295,6 +301,7 @@ export type UserGroupByOutputType = {
   healthGoals: string[]
   provider: $Enums.AuthProvider
   isEmailVerified: boolean
+  isProfileCompleted: boolean
   isActive: boolean
   metadata: runtime.JsonValue | null
   createdAt: Date
@@ -344,6 +351,7 @@ export type UserWhereInput = {
   healthGoals?: Prisma.StringNullableListFilter<"User">
   provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFilter<"User"> | boolean
+  isProfileCompleted?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
   metadata?: Prisma.JsonNullableFilter<"User">
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -370,6 +378,7 @@ export type UserOrderByWithRelationInput = {
   healthGoals?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
+  isProfileCompleted?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -399,6 +408,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   healthGoals?: Prisma.StringNullableListFilter<"User">
   provider?: Prisma.EnumAuthProviderFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFilter<"User"> | boolean
+  isProfileCompleted?: Prisma.BoolFilter<"User"> | boolean
   isActive?: Prisma.BoolFilter<"User"> | boolean
   metadata?: Prisma.JsonNullableFilter<"User">
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -425,6 +435,7 @@ export type UserOrderByWithAggregationInput = {
   healthGoals?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
+  isProfileCompleted?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -459,6 +470,7 @@ export type UserScalarWhereWithAggregatesInput = {
   healthGoals?: Prisma.StringNullableListFilter<"User">
   provider?: Prisma.EnumAuthProviderWithAggregatesFilter<"User"> | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  isProfileCompleted?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"User">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -485,6 +497,7 @@ export type UserCreateInput = {
   healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -511,6 +524,7 @@ export type UserUncheckedCreateInput = {
   healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -537,6 +551,7 @@ export type UserUpdateInput = {
   healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isProfileCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -563,6 +578,7 @@ export type UserUncheckedUpdateInput = {
   healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isProfileCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -589,6 +605,7 @@ export type UserCreateManyInput = {
   healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
   provider?: $Enums.AuthProvider
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
@@ -615,6 +632,7 @@ export type UserUpdateManyMutationInput = {
   healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isProfileCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -641,6 +659,7 @@ export type UserUncheckedUpdateManyInput = {
   healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
   isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isProfileCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -675,6 +694,7 @@ export type UserCountOrderByAggregateInput = {
   healthGoals?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
+  isProfileCompleted?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -703,6 +723,7 @@ export type UserMaxOrderByAggregateInput = {
   activityLevel?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
+  isProfileCompleted?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -723,6 +744,7 @@ export type UserMinOrderByAggregateInput = {
   activityLevel?: Prisma.SortOrder
   provider?: Prisma.SortOrder
   isEmailVerified?: Prisma.SortOrder
+  isProfileCompleted?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -866,6 +888,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: boolean
   createdAt?: boolean
@@ -892,6 +915,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: boolean
   createdAt?: boolean
@@ -918,6 +942,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: boolean
   createdAt?: boolean
@@ -944,13 +969,14 @@ export type UserSelectScalar = {
   healthGoals?: boolean
   provider?: boolean
   isEmailVerified?: boolean
+  isProfileCompleted?: boolean
   isActive?: boolean
   metadata?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "gender" | "age" | "dob" | "preferredMode" | "skinType" | "skinConcerns" | "beautyGoals" | "height" | "weight" | "activityLevel" | "dietaryPreferences" | "allergies" | "healthGoals" | "provider" | "isEmailVerified" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "gender" | "age" | "dob" | "preferredMode" | "skinType" | "skinConcerns" | "beautyGoals" | "height" | "weight" | "activityLevel" | "dietaryPreferences" | "allergies" | "healthGoals" | "provider" | "isEmailVerified" | "isProfileCompleted" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
@@ -975,6 +1001,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     healthGoals: string[]
     provider: $Enums.AuthProvider
     isEmailVerified: boolean
+    isProfileCompleted: boolean
     isActive: boolean
     metadata: runtime.JsonValue | null
     createdAt: Date
@@ -1421,6 +1448,7 @@ export interface UserFieldRefs {
   readonly healthGoals: Prisma.FieldRef<"User", 'String[]'>
   readonly provider: Prisma.FieldRef<"User", 'AuthProvider'>
   readonly isEmailVerified: Prisma.FieldRef<"User", 'Boolean'>
+  readonly isProfileCompleted: Prisma.FieldRef<"User", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"User", 'Boolean'>
   readonly metadata: Prisma.FieldRef<"User", 'Json'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>

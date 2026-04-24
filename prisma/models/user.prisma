@@ -27,6 +27,7 @@ model User {
   // Auth & Status
   provider        AuthProvider @default(GOOGLE)
   isEmailVerified Boolean      @default(false)
+  isProfileCompleted Boolean      @default(false)
   isActive        Boolean      @default(true)
 
   // Metadata for future flexibility (e.g. notifications, settings)

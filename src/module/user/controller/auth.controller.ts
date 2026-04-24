@@ -6,8 +6,7 @@ import { generateToken } from "../../../utils/jwt.utils";
 
 export const auth = async ({ body }: Context<{ body: IAuthPayload }>) => {
   const { name, email, avatar } = body;
-  console.log(name, email, avatar)
-
+  
   if (!email || !name) {
     throw new ErrorResponse("Name and Email are required", 400);
   }
