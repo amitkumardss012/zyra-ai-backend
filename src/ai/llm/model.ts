@@ -1,6 +1,7 @@
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { ENV } from "../../config/env";
 import { ChatGroq } from "@langchain/groq";
+import { nutritionAgentPrompt } from "./prompt";
 
 export const googleGenAIModel = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash",
@@ -15,3 +16,13 @@ export const groqModel = new ChatGroq({
   maxTokens: 2000,
   maxRetries: 1,
 });
+
+
+// Example test call (optional, usually removed in production)
+groqModel.invoke([
+  nutritionAgentPrompt,
+  {
+    role: 'user',
+    content: 'Analyze my nutrition'
+  }
+]).then(console.log).catch(console.error);

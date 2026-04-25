@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const scanFoodSchema = z.object({
-  image: z.file(),
+  imageBase64: z.string(),
   mealType: z.enum(["BREAKFAST", "LUNCH", "DINNER", "SNACK"]),
 });
 
