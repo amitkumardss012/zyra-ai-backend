@@ -19,10 +19,10 @@ export const groqModel = new ChatGroq({
 
 
 // Example test call (optional, usually removed in production)
-groqModel.invoke([
-  nutritionAgentPrompt,
-  {
-    role: 'user',
-    content: 'Analyze my nutrition'
-  }
-]).then(console.log).catch(console.error);
+// groqModel.invoke([
+//   nutritionAgentPrompt,
+//   {
+//     role: 'user',
+//     content: 'Analyze my nutrition'
+//   }
+// ]).then(console.log).catch(console.error);

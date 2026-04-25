@@ -1,12 +1,5 @@
 import { z } from "zod";
 
-export const scanFoodSchema = z.object({
-  imageBase64: z.string(),
-  mealType: z.enum(["BREAKFAST", "LUNCH", "DINNER", "SNACK"]),
-});
-
-export type ScanFoodInput = z.infer<typeof scanFoodSchema>;
-
 export const nutritionOutputSchema = z.object({
   name: z.string().describe("Name of the food item"),
   servingSize: z.string().optional().describe("Estimated serving size"),
