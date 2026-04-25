@@ -1,38 +1,85 @@
 import { Context } from "elysia";
 import { ScanFoodSchemaType } from "../validators/nutrition.validator";
 import { statusCodes, User } from "../types/types";
-import { SuccessResponse } from "../utils/response.utils";  
+import { SuccessResponse } from "../utils/response.utils";
+import { uploadOnCloudinary } from "../config/cloudinary";
+import { googleGenAIModel } from "../ai/llm/model";
+import { nutritionAgentPrompt } from "../ai/llm/prompt";
+import { nutritionOutputSchema } from "../ai/schema/nutrition.schema";
+import { HumanMessage } from "@langchain/core/messages";
+import { prisma } from "../config/prisma";
 
 export const scanFoodController = async ({
   body,
   user,
 }: Context<{ body: ScanFoodSchemaType }> & { user: User }) => {
-    const {image , mealType} = body;
-    
+  const { image: rawImage, mealType } = body;
+  
+  // Strip the Data URL prefix (e.g., "data:image/jpeg;base64,") if it exists
+  const image = rawImage.replace(/^data:image\/\w+;base64,/, "");
 
-    return SuccessResponse("Food scannned successfully", {
-        name: "apple",
-        servingSize: "1 apple",
-        calories: 95,
-        protein: 0.5,
-        carbs: 25,
-        fats: 0.3,
-        fiber: 4.4,
-        sugar: 19,
-        sodium: 2,
-        cholesterol: 0,
-        vitaminA: 54,
-        vitaminC: 8.4,
-        vitaminB6: 0.1,
-        iron: 0.2,
-        potassium: 195,
-        calcium: 11,
-        healthScore: 85,
-        imageUrl: {
-            url: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXBwbGV8ZW58MHx8MHx8fDA%3D",
-            public_id: "1234567890",
+  // 1. Invoke Vision Model for Analysis FIRST (Using base64 image)
+  const modelWithStructuredOutput = googleGenAIModel.withStructuredOutput(nutritionOutputSchema);
+  
+  const aiResponse = await modelWithStructuredOutput.invoke([
+    nutritionAgentPrompt,
+    new HumanMessage({
+      content: [
+        {
+          type: "text",
+          text: "Analyze this food image and provide detailed nutritional information.",
         },
-        tags: ["fruit", "healthy"],
-        mealType: mealType,
-    }, statusCodes.SUCCESS, "FOOD_SCANNED_SUCCESSFULLY");
+        {
+          type: "image_url",
+          image_url: {
+            url: `data:image/jpeg;base64,${image}`,
+          },
+        },
+      ],
+    }),
+  ]);
+
+  // 2. Upload image to Cloudinary ONLY IF AI analysis succeeded
+  const cloudinaryResult = await uploadOnCloudinary(image, "nutrition_scans");
+
+  // 3. Save to Database
+  const nutritionLog = await prisma.nutritionLog.create({
+    data: {
+      userId: user.id, // User ID is BigInt
+      name: aiResponse.name,
+      servingSize: aiResponse.servingSize,
+      calories: aiResponse.calories,
+      protein: aiResponse.protein,
+      carbs: aiResponse.carbs,
+      fats: aiResponse.fats,
+      fiber: aiResponse.fiber,
+      sugar: aiResponse.sugar,
+      sodium: aiResponse.sodium,
+      cholesterol: aiResponse.cholesterol,
+      vitaminA: aiResponse.vitaminA,
+      vitaminC: aiResponse.vitaminC,
+      vitaminB6: aiResponse.vitaminB6,
+      iron: aiResponse.iron,
+      potassium: aiResponse.potassium,
+      calcium: aiResponse.calcium,
+      healthScore: aiResponse.healthScore,
+      imageUrl: cloudinaryResult.url, // Store the Cloudinary URL
+      tags: aiResponse.tags,
+      mealType: mealType as any, // Cast to MealType enum
+    },
+  });
+
+  // 4. Return Response
+  return SuccessResponse(
+    "Food scanned and logged successfully",
+    {
+      ...aiResponse,
+      imageUrl: cloudinaryResult,
+      id: nutritionLog.id,
+      mealType: nutritionLog.mealType,
+      createdAt: nutritionLog.createdAt,
+    },
+    statusCodes.SUCCESS,
+    "FOOD_SCANNED_SUCCESSFULLY"
+  );
 };

@@ -2,10 +2,7 @@ import { t } from "elysia";
 import { MealType } from "../types/types";
 
 export const scanFoodSchema = t.Object({
-    image: t.File({
-        maxSize: 10 * 1024 * 1024,
-        accept: ["image/jpeg", "image/png", "image/jpg", "image/webp"],
-    }),
+    image: t.String(),
     mealType: t.Enum(MealType),
 })
 
