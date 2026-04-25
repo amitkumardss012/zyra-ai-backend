@@ -9,6 +9,16 @@
 * 🟢 You can import this file directly.
 */
 
+export const MealType = {
+  BREAKFAST: 'BREAKFAST',
+  LUNCH: 'LUNCH',
+  DINNER: 'DINNER',
+  SNACK: 'SNACK'
+} as const
+
+export type MealType = (typeof MealType)[keyof typeof MealType]
+
+
 export const Gender = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',

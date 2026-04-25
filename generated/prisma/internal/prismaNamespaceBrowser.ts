@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  NutritionLog: 'NutritionLog',
   User: 'User'
 } as const
 
@@ -68,6 +69,37 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const NutritionLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  servingSize: 'servingSize',
+  calories: 'calories',
+  protein: 'protein',
+  carbs: 'carbs',
+  fats: 'fats',
+  fiber: 'fiber',
+  sugar: 'sugar',
+  sodium: 'sodium',
+  cholesterol: 'cholesterol',
+  vitaminA: 'vitaminA',
+  vitaminC: 'vitaminC',
+  vitaminB6: 'vitaminB6',
+  iron: 'iron',
+  potassium: 'potassium',
+  calcium: 'calcium',
+  healthScore: 'healthScore',
+  imageUrl: 'imageUrl',
+  tags: 'tags',
+  mealType: 'mealType',
+  otherNutrients: 'otherNutrients',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NutritionLogScalarFieldEnum = (typeof NutritionLogScalarFieldEnum)[keyof typeof NutritionLogScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {

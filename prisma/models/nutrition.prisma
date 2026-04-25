@@ -1,0 +1,49 @@
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+}
+
+model NutritionLog {
+  id               String           @id @default(uuid())
+  userId           BigInt
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Core Info
+  name             String
+  servingSize      String?
+  calories         Float
+  protein          Float
+  carbs            Float
+  fats             Float
+  
+  // Secondary Nutrients
+  fiber            Float?
+  sugar            Float?
+  sodium           Float?
+  cholesterol      Float?
+  
+  // Micronutrients (Flattened)
+  vitaminA         Float?
+  vitaminC         Float?
+  vitaminB6        Float?
+  iron             Float?
+  potassium        Float?
+  calcium          Float?
+  
+  // AI Results & Context
+  healthScore      Int?
+  imageUrl         Json?
+  tags             String[]         @default([])
+  mealType         MealType         @default(SNACK)
+
+  otherNutrients   Json?   
+  
+  // Metadata
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
+}

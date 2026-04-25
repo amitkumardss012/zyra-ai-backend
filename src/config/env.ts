@@ -10,4 +10,9 @@ export const ENV = {
     cloudinaryFolder: process.env.CLOUD_FOLDER,
 
     mode: process.env.NODE_ENV,
+
+    
+    // models env 
+    groqApiKey: process.env.GROQ_API_KEY,
+    googleApiKey: process.env.GOOGLE_API_KEY,
 }
