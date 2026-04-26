@@ -6,8 +6,9 @@ import { uploadOnCloudinary } from "../config/cloudinary";
 import { googleGenAIModel } from "../ai/llm/model";
 import { nutritionAgentPrompt } from "../ai/llm/prompt";
 import { nutritionOutputSchema } from "../ai/schema/nutrition.schema";
-import { HumanMessage } from "@langchain/core/messages";
+import { BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { prisma } from "../config/prisma";
+import { nutritionAgent } from "../ai/llm/agent";
 
 export const scanFoodController = async ({
   body,
@@ -63,9 +64,9 @@ export const scanFoodController = async ({
       potassium: aiResponse.potassium,
       calcium: aiResponse.calcium,
       healthScore: aiResponse.healthScore,
-      imageUrl: cloudinaryResult.url, // Store the Cloudinary URL
+      imageUrl: cloudinaryResult.url,
       tags: aiResponse.tags,
-      mealType: mealType as any, // Cast to MealType enum
+      mealType: mealType as any,
     },
   });
 
@@ -83,3 +84,44 @@ export const scanFoodController = async ({
     "FOOD_SCANNED_SUCCESSFULLY"
   );
 };
+
+
+export const chatWithNutritionist = async ({
+  body,
+  user,
+}: Context<{ body: {messages: BaseMessage[]} }> & { user: User }) => {
+  const {messages} = body;
+
+  const userHistory = await prisma.nutritionLog.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 5,
+  });
+
+  const prompt = [
+    nutritionAgentPrompt,
+    ...userHistory.map((log) => new HumanMessage({
+      content: [
+        {
+          type: "text",
+          text: `Food Log: ${log.name} - Calories: ${log.calories}, Protein: ${log.protein}, Carbs: ${log.carbs}, Fats: ${log.fats}`,
+        },
+      ],
+    })),
+    ...messages,
+  ];
+
+  const response = await googleGenAIModel.invoke(prompt);
+
+  return SuccessResponse(
+    "Chat response",
+    response,
+    statusCodes.SUCCESS,
+    "CHAT_RESPONSE"
+  );
+}
+  
