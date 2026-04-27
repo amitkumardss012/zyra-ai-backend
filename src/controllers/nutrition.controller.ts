@@ -1,14 +1,13 @@
 import { HumanMessage } from "@langchain/core/messages";
 import { Context } from "elysia";
 import { googleGenAIModel } from "../ai/llm/model";
-import { foodScanPrompt } from "../ai/llm/prompt";
+import { foodScanPrompt, nutritionAssistantPrompt } from "../ai/llm/prompt";
 import { nutritionOutputSchema } from "../ai/schema/nutrition.schema";
 import { uploadOnCloudinary } from "../config/cloudinary";
 import { prisma } from "../config/prisma";
 import { statusCodes, User } from "../types/types";
 import { SuccessResponse } from "../utils/response.utils";
 import { ScanFoodSchemaType } from "../validators/nutrition.validator";
-import { nutritionAgent } from "../ai/llm/agent";
 
 export const scanFoodController = async ({
   body,
@@ -90,19 +89,19 @@ export const scanFoodController = async ({
 export const chatWithNutritionist = async ({
   body,
   user,
-}: Context<{ body: { messages:  string} }> & {
+}: Context<{ body: { messages: string } }> & {
   user: User;
 }) => {
   const { messages } = body;
 
-  const response = await nutritionAgent.invoke(
-    { messages: [new HumanMessage(messages)] },
-    { context: { userId: user.id } },
-  );
+  const response = await googleGenAIModel.invoke([
+    nutritionAssistantPrompt,
+    new HumanMessage(messages),
+  ]);
 
   return SuccessResponse(
     "Chat response",
-    response,
+    response.content,
     statusCodes.SUCCESS,
     "CHAT_RESPONSE",
   );

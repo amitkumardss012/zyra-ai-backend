@@ -5,7 +5,7 @@ import { ChatGroq } from "@langchain/groq";
 export const googleGenAIModel = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash",
   apiKey: ENV.googleApiKey,
-  maxOutputTokens: 3000,
+  maxOutputTokens: 10000,
   maxRetries: 1,
 });
 

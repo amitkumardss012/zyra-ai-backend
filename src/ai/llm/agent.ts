@@ -1,6 +1,6 @@
 import { createAgent } from "langchain";
 import { googleGenAIModel, groqModel } from "./model";
-import { beautyAgentPrompt, nutritionAgentPrompt } from "./prompt";
+import { beautyAgentPrompt } from "./prompt";
 import { z } from "zod";
 import { getUserFoodScanHistory } from "../tools/nutrition";
 
@@ -8,7 +8,7 @@ import { getUserFoodScanHistory } from "../tools/nutrition";
 export const nutritionAgent = createAgent({
   model: googleGenAIModel,
   tools: [getUserFoodScanHistory],
-  systemPrompt: nutritionAgentPrompt,
+  systemPrompt: '',
   contextSchema: z.object({
     userId: z.bigint(),
   }),
