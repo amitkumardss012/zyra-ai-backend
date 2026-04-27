@@ -1,12 +1,11 @@
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { ENV } from "../../config/env";
 import { ChatGroq } from "@langchain/groq";
-import { nutritionAgentPrompt } from "./prompt";
 
 export const googleGenAIModel = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash",
   apiKey: ENV.googleApiKey,
-  maxOutputTokens: 8000,
+  maxOutputTokens: 3000,
   maxRetries: 1,
 });
 

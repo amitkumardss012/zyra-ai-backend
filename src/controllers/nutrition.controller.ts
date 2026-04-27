@@ -1,13 +1,13 @@
+import { HumanMessage } from "@langchain/core/messages";
 import { Context } from "elysia";
-import { ScanFoodSchemaType } from "../validators/nutrition.validator";
+import { googleGenAIModel } from "../ai/llm/model";
+import { foodScanPrompt } from "../ai/llm/prompt";
+import { nutritionOutputSchema } from "../ai/schema/nutrition.schema";
+import { uploadOnCloudinary } from "../config/cloudinary";
+import { prisma } from "../config/prisma";
 import { statusCodes, User } from "../types/types";
 import { SuccessResponse } from "../utils/response.utils";
-import { uploadOnCloudinary } from "../config/cloudinary";
-import { googleGenAIModel } from "../ai/llm/model";
-import { nutritionAgentPrompt } from "../ai/llm/prompt";
-import { nutritionOutputSchema } from "../ai/schema/nutrition.schema";
-import { BaseMessage, HumanMessage } from "@langchain/core/messages";
-import { prisma } from "../config/prisma";
+import { ScanFoodSchemaType } from "../validators/nutrition.validator";
 import { nutritionAgent } from "../ai/llm/agent";
 
 export const scanFoodController = async ({
@@ -15,15 +15,17 @@ export const scanFoodController = async ({
   user,
 }: Context<{ body: ScanFoodSchemaType }> & { user: User }) => {
   const { image: rawImage, mealType } = body;
-  
+
   // Strip the Data URL prefix (e.g., "data:image/jpeg;base64,") if it exists
   const image = rawImage.replace(/^data:image\/\w+;base64,/, "");
 
   // 1. Invoke Vision Model for Analysis FIRST (Using base64 image)
-  const modelWithStructuredOutput = googleGenAIModel.withStructuredOutput(nutritionOutputSchema);
-  
+  const modelWithStructuredOutput = googleGenAIModel.withStructuredOutput(
+    nutritionOutputSchema,
+  );
+
   const aiResponse = await modelWithStructuredOutput.invoke([
-    nutritionAgentPrompt,
+    foodScanPrompt,
     new HumanMessage({
       content: [
         {
@@ -81,47 +83,27 @@ export const scanFoodController = async ({
       createdAt: nutritionLog.createdAt,
     },
     statusCodes.SUCCESS,
-    "FOOD_SCANNED_SUCCESSFULLY"
+    "FOOD_SCANNED_SUCCESSFULLY",
   );
 };
-
 
 export const chatWithNutritionist = async ({
   body,
   user,
-}: Context<{ body: {messages: BaseMessage[]} }> & { user: User }) => {
-  const {messages} = body;
+}: Context<{ body: { messages:  string} }> & {
+  user: User;
+}) => {
+  const { messages } = body;
 
-  const userHistory = await prisma.nutritionLog.findMany({
-    where: {
-      userId: user.id,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: 5,
-  });
-
-  const prompt = [
-    nutritionAgentPrompt,
-    ...userHistory.map((log) => new HumanMessage({
-      content: [
-        {
-          type: "text",
-          text: `Food Log: ${log.name} - Calories: ${log.calories}, Protein: ${log.protein}, Carbs: ${log.carbs}, Fats: ${log.fats}`,
-        },
-      ],
-    })),
-    ...messages,
-  ];
-
-  const response = await googleGenAIModel.invoke(prompt);
+  const response = await nutritionAgent.invoke(
+    { messages: [new HumanMessage(messages)] },
+    { context: { userId: user.id } },
+  );
 
   return SuccessResponse(
     "Chat response",
     response,
     statusCodes.SUCCESS,
-    "CHAT_RESPONSE"
+    "CHAT_RESPONSE",
   );
-}
-  
+};
