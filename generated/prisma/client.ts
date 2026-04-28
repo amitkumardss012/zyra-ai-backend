@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type NutritionLog = Prisma.NutritionLogModel
 /**
+ * Model TransformationPlan
+ * 
+ */
+export type TransformationPlan = Prisma.TransformationPlanModel
+/**
  * Model User
  * 
  */

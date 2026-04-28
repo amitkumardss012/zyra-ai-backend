@@ -47,3 +47,41 @@ model NutritionLog {
   @@index([userId])
   @@index([createdAt])
 }
+
+enum PlanStatus {
+  ACTIVE
+  ARCHIVED
+  COMPLETED
+}
+
+model TransformationPlan {
+  id               String   @id @default(uuid())
+  userId           BigInt
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Plan Metadata
+  goal             String   // e.g., "Weight Loss", "Muscle Gain"
+  description      String?  
+  durationDays     Int
+  status           PlanStatus @default(ACTIVE)
+
+  // Top-Level Queryable Stats (Relational & Scalable)
+  dailyCalories    Int
+  proteinGrams     Int
+  carbsGrams       Int
+  fatsGrams        Int
+
+  // Assessment Data
+  assessment       Json     // [{ question, answer }]
+
+  // Detailed Plan Content (Structured JSON)
+  dietSchedule     Json     // [{ mealName, time, items: [], calories }]
+  workoutRoutine   Json     // [{ day, focus, exercises: [{ name, sets, reps }] }]
+  guidelines       Json     // { toEat: [], toAvoid: [], tips: [] }
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}

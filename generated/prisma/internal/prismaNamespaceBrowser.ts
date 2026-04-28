@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   NutritionLog: 'NutritionLog',
+  TransformationPlan: 'TransformationPlan',
   User: 'User'
 } as const
 
@@ -102,6 +103,28 @@ export const NutritionLogScalarFieldEnum = {
 export type NutritionLogScalarFieldEnum = (typeof NutritionLogScalarFieldEnum)[keyof typeof NutritionLogScalarFieldEnum]
 
 
+export const TransformationPlanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  goal: 'goal',
+  description: 'description',
+  durationDays: 'durationDays',
+  status: 'status',
+  dailyCalories: 'dailyCalories',
+  proteinGrams: 'proteinGrams',
+  carbsGrams: 'carbsGrams',
+  fatsGrams: 'fatsGrams',
+  assessment: 'assessment',
+  dietSchedule: 'dietSchedule',
+  workoutRoutine: 'workoutRoutine',
+  guidelines: 'guidelines',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TransformationPlanScalarFieldEnum = (typeof TransformationPlanScalarFieldEnum)[keyof typeof TransformationPlanScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -146,6 +169,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

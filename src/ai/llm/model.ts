@@ -5,14 +5,15 @@ import { ChatGroq } from "@langchain/groq";
 export const googleGenAIModel = new ChatGoogleGenerativeAI({
   model: "gemini-2.5-flash",
   apiKey: ENV.googleApiKey,
-  maxOutputTokens: 10000,
-  maxRetries: 1,
+  maxOutputTokens: 8192, // Sufficient for long JSON plans
+  maxRetries: 2,
+  temperature: 0.2,
 });
 
 export const groqModel = new ChatGroq({
-  model: "llama-3.1-8b-instant",
+  model: "llama-3.3-70b-versatile",
   apiKey: ENV.groqApiKey,
-  maxTokens: 2000,
+  maxTokens: 10000,
   maxRetries: 1,
 });
 

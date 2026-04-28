@@ -19,6 +19,15 @@ export const MealType = {
 export type MealType = (typeof MealType)[keyof typeof MealType]
 
 
+export const PlanStatus = {
+  ACTIVE: 'ACTIVE',
+  ARCHIVED: 'ARCHIVED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type PlanStatus = (typeof PlanStatus)[keyof typeof PlanStatus]
+
+
 export const Gender = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',

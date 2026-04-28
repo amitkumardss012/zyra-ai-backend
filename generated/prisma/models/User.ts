@@ -357,6 +357,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   nutritionLogs?: Prisma.NutritionLogListRelationFilter
+  transformationPlans?: Prisma.TransformationPlanListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -385,6 +386,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   nutritionLogs?: Prisma.NutritionLogOrderByRelationAggregateInput
+  transformationPlans?: Prisma.TransformationPlanOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -416,6 +418,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   nutritionLogs?: Prisma.NutritionLogListRelationFilter
+  transformationPlans?: Prisma.TransformationPlanListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -506,6 +509,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   nutritionLogs?: Prisma.NutritionLogCreateNestedManyWithoutUserInput
+  transformationPlans?: Prisma.TransformationPlanCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -534,6 +538,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   nutritionLogs?: Prisma.NutritionLogUncheckedCreateNestedManyWithoutUserInput
+  transformationPlans?: Prisma.TransformationPlanUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -562,6 +567,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nutritionLogs?: Prisma.NutritionLogUpdateManyWithoutUserNestedInput
+  transformationPlans?: Prisma.TransformationPlanUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -590,6 +596,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nutritionLogs?: Prisma.NutritionLogUncheckedUpdateManyWithoutUserNestedInput
+  transformationPlans?: Prisma.TransformationPlanUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -775,6 +782,20 @@ export type UserUpdateOneRequiredWithoutNutritionLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNutritionLogsInput, Prisma.UserUpdateWithoutNutritionLogsInput>, Prisma.UserUncheckedUpdateWithoutNutritionLogsInput>
 }
 
+export type UserCreateNestedOneWithoutTransformationPlansInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTransformationPlansInput, Prisma.UserUncheckedCreateWithoutTransformationPlansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransformationPlansInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTransformationPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTransformationPlansInput, Prisma.UserUncheckedCreateWithoutTransformationPlansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTransformationPlansInput
+  upsert?: Prisma.UserUpsertWithoutTransformationPlansInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTransformationPlansInput, Prisma.UserUpdateWithoutTransformationPlansInput>, Prisma.UserUncheckedUpdateWithoutTransformationPlansInput>
+}
+
 export type UserCreateskinConcernsInput = {
   set: string[]
 }
@@ -873,6 +894,7 @@ export type UserCreateWithoutNutritionLogsInput = {
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  transformationPlans?: Prisma.TransformationPlanCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNutritionLogsInput = {
@@ -900,6 +922,7 @@ export type UserUncheckedCreateWithoutNutritionLogsInput = {
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  transformationPlans?: Prisma.TransformationPlanUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNutritionLogsInput = {
@@ -943,6 +966,7 @@ export type UserUpdateWithoutNutritionLogsInput = {
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transformationPlans?: Prisma.TransformationPlanUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNutritionLogsInput = {
@@ -970,6 +994,135 @@ export type UserUncheckedUpdateWithoutNutritionLogsInput = {
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transformationPlans?: Prisma.TransformationPlanUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTransformationPlansInput = {
+  id?: bigint | number
+  email: string
+  name: string
+  avatar?: string | null
+  gender?: $Enums.Gender | null
+  age?: number | null
+  dob?: Date | string | null
+  preferredMode?: $Enums.ScanningMode
+  skinType?: $Enums.SkinType | null
+  skinConcerns?: Prisma.UserCreateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserCreatebeautyGoalsInput | string[]
+  height?: number | null
+  weight?: number | null
+  activityLevel?: $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserCreatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserCreateallergiesInput | string[]
+  healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
+  provider?: $Enums.AuthProvider
+  isEmailVerified?: boolean
+  isProfileCompleted?: boolean
+  isActive?: boolean
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  nutritionLogs?: Prisma.NutritionLogCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTransformationPlansInput = {
+  id?: bigint | number
+  email: string
+  name: string
+  avatar?: string | null
+  gender?: $Enums.Gender | null
+  age?: number | null
+  dob?: Date | string | null
+  preferredMode?: $Enums.ScanningMode
+  skinType?: $Enums.SkinType | null
+  skinConcerns?: Prisma.UserCreateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserCreatebeautyGoalsInput | string[]
+  height?: number | null
+  weight?: number | null
+  activityLevel?: $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserCreatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserCreateallergiesInput | string[]
+  healthGoals?: Prisma.UserCreatehealthGoalsInput | string[]
+  provider?: $Enums.AuthProvider
+  isEmailVerified?: boolean
+  isProfileCompleted?: boolean
+  isActive?: boolean
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  nutritionLogs?: Prisma.NutritionLogUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTransformationPlansInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTransformationPlansInput, Prisma.UserUncheckedCreateWithoutTransformationPlansInput>
+}
+
+export type UserUpsertWithoutTransformationPlansInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTransformationPlansInput, Prisma.UserUncheckedUpdateWithoutTransformationPlansInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTransformationPlansInput, Prisma.UserUncheckedCreateWithoutTransformationPlansInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTransformationPlansInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTransformationPlansInput, Prisma.UserUncheckedUpdateWithoutTransformationPlansInput>
+}
+
+export type UserUpdateWithoutTransformationPlansInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
+  skinType?: Prisma.NullableEnumSkinTypeFieldUpdateOperationsInput | $Enums.SkinType | null
+  skinConcerns?: Prisma.UserUpdateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserUpdatebeautyGoalsInput | string[]
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserUpdatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserUpdateallergiesInput | string[]
+  healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
+  provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isProfileCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nutritionLogs?: Prisma.NutritionLogUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTransformationPlansInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  preferredMode?: Prisma.EnumScanningModeFieldUpdateOperationsInput | $Enums.ScanningMode
+  skinType?: Prisma.NullableEnumSkinTypeFieldUpdateOperationsInput | $Enums.SkinType | null
+  skinConcerns?: Prisma.UserUpdateskinConcernsInput | string[]
+  beautyGoals?: Prisma.UserUpdatebeautyGoalsInput | string[]
+  height?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  weight?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  activityLevel?: Prisma.NullableEnumActivityLevelFieldUpdateOperationsInput | $Enums.ActivityLevel | null
+  dietaryPreferences?: Prisma.UserUpdatedietaryPreferencesInput | string[]
+  allergies?: Prisma.UserUpdateallergiesInput | string[]
+  healthGoals?: Prisma.UserUpdatehealthGoalsInput | string[]
+  provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  isEmailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isProfileCompleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nutritionLogs?: Prisma.NutritionLogUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -979,10 +1132,12 @@ export type UserUncheckedUpdateWithoutNutritionLogsInput = {
 
 export type UserCountOutputType = {
   nutritionLogs: number
+  transformationPlans: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   nutritionLogs?: boolean | UserCountOutputTypeCountNutritionLogsArgs
+  transformationPlans?: boolean | UserCountOutputTypeCountTransformationPlansArgs
 }
 
 /**
@@ -1000,6 +1155,13 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UserCountOutputTypeCountNutritionLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.NutritionLogWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTransformationPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TransformationPlanWhereInput
 }
 
 
@@ -1029,6 +1191,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   nutritionLogs?: boolean | Prisma.User$nutritionLogsArgs<ExtArgs>
+  transformationPlans?: boolean | Prisma.User$transformationPlansArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1116,6 +1279,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatar" | "gender" | "age" | "dob" | "preferredMode" | "skinType" | "skinConcerns" | "beautyGoals" | "height" | "weight" | "activityLevel" | "dietaryPreferences" | "allergies" | "healthGoals" | "provider" | "isEmailVerified" | "isProfileCompleted" | "isActive" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   nutritionLogs?: boolean | Prisma.User$nutritionLogsArgs<ExtArgs>
+  transformationPlans?: boolean | Prisma.User$transformationPlansArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1125,6 +1289,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     nutritionLogs: Prisma.$NutritionLogPayload<ExtArgs>[]
+    transformationPlans: Prisma.$TransformationPlanPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1546,6 +1711,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   nutritionLogs<T extends Prisma.User$nutritionLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$nutritionLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NutritionLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  transformationPlans<T extends Prisma.User$transformationPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$transformationPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TransformationPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2013,6 +2179,30 @@ export type User$nutritionLogsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.NutritionLogScalarFieldEnum | Prisma.NutritionLogScalarFieldEnum[]
+}
+
+/**
+ * User.transformationPlans
+ */
+export type User$transformationPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TransformationPlan
+   */
+  select?: Prisma.TransformationPlanSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TransformationPlan
+   */
+  omit?: Prisma.TransformationPlanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransformationPlanInclude<ExtArgs> | null
+  where?: Prisma.TransformationPlanWhereInput
+  orderBy?: Prisma.TransformationPlanOrderByWithRelationInput | Prisma.TransformationPlanOrderByWithRelationInput[]
+  cursor?: Prisma.TransformationPlanWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TransformationPlanScalarFieldEnum | Prisma.TransformationPlanScalarFieldEnum[]
 }
 
 /**

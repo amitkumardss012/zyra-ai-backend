@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   NutritionLog: 'NutritionLog',
+  TransformationPlan: 'TransformationPlan',
   User: 'User'
 } as const
 
@@ -401,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "nutritionLog" | "user"
+    modelProps: "nutritionLog" | "transformationPlan" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -476,6 +477,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.NutritionLogCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.NutritionLogCountAggregateOutputType> | number
+        }
+      }
+    }
+    TransformationPlan: {
+      payload: Prisma.$TransformationPlanPayload<ExtArgs>
+      fields: Prisma.TransformationPlanFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TransformationPlanFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TransformationPlanFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>
+        }
+        findFirst: {
+          args: Prisma.TransformationPlanFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TransformationPlanFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>
+        }
+        findMany: {
+          args: Prisma.TransformationPlanFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>[]
+        }
+        create: {
+          args: Prisma.TransformationPlanCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>
+        }
+        createMany: {
+          args: Prisma.TransformationPlanCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TransformationPlanCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>[]
+        }
+        delete: {
+          args: Prisma.TransformationPlanDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>
+        }
+        update: {
+          args: Prisma.TransformationPlanUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>
+        }
+        deleteMany: {
+          args: Prisma.TransformationPlanDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TransformationPlanUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TransformationPlanUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>[]
+        }
+        upsert: {
+          args: Prisma.TransformationPlanUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TransformationPlanPayload>
+        }
+        aggregate: {
+          args: Prisma.TransformationPlanAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTransformationPlan>
+        }
+        groupBy: {
+          args: Prisma.TransformationPlanGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TransformationPlanGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TransformationPlanCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TransformationPlanCountAggregateOutputType> | number
         }
       }
     }
@@ -623,6 +698,28 @@ export const NutritionLogScalarFieldEnum = {
 export type NutritionLogScalarFieldEnum = (typeof NutritionLogScalarFieldEnum)[keyof typeof NutritionLogScalarFieldEnum]
 
 
+export const TransformationPlanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  goal: 'goal',
+  description: 'description',
+  durationDays: 'durationDays',
+  status: 'status',
+  dailyCalories: 'dailyCalories',
+  proteinGrams: 'proteinGrams',
+  carbsGrams: 'carbsGrams',
+  fatsGrams: 'fatsGrams',
+  assessment: 'assessment',
+  dietSchedule: 'dietSchedule',
+  workoutRoutine: 'workoutRoutine',
+  guidelines: 'guidelines',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TransformationPlanScalarFieldEnum = (typeof TransformationPlanScalarFieldEnum)[keyof typeof TransformationPlanScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -667,6 +764,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -795,6 +899,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'PlanStatus'
+ */
+export type EnumPlanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'PlanStatus[]'
+ */
+export type ListEnumPlanStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PlanStatus[]'>
     
 
 
@@ -970,6 +1088,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   nutritionLog?: Prisma.NutritionLogOmit
+  transformationPlan?: Prisma.TransformationPlanOmit
   user?: Prisma.UserOmit
 }
 

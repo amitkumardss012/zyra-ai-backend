@@ -38,7 +38,8 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations
-  nutritionLogs  NutritionLog[]
+  nutritionLogs       NutritionLog[]
+  transformationPlans TransformationPlan[]
 
   @@index([email])
 }
