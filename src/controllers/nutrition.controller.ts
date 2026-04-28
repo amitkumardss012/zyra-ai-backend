@@ -1,6 +1,6 @@
 import { HumanMessage } from "@langchain/core/messages";
 import { Context } from "elysia";
-import { googleGenAIModel } from "../ai/llm/model";
+import { googleGenAIModel, groqModel } from "../ai/llm/model";
 import { foodScanPrompt, nutritionAssistantPrompt } from "../ai/llm/prompt";
 import { nutritionOutputSchema } from "../ai/schema/nutrition.schema";
 import { uploadOnCloudinary } from "../config/cloudinary";
@@ -94,7 +94,7 @@ export const chatWithNutritionist = async ({
 }) => {
   const { messages } = body;
 
-  const response = await googleGenAIModel.invoke([
+  const response = await groqModel.invoke([
     nutritionAssistantPrompt,
     new HumanMessage(messages),
   ]);

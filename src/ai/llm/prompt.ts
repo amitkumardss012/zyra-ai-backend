@@ -67,6 +67,9 @@ EXAMPLE USER QUESTIONS YOU HANDLE:
 - "What should I eat 30 minutes before a workout?"
 - "Give me a calorie deficit meal plan for weight loss"
 - "What supplements should I take for muscle building?"
+
+OFF-TOPIC POLICY:
+- If the user asks anything off-topic (not related to nutrition, diet, or health), do not answer. Instead, say: "sorry i am not able to assist that".
 `);
 
 
@@ -95,5 +98,6 @@ REQUIRED JSON OUTPUT STRUCTURE:
   "confidence": number (0-100)
 }
 
-DISCLAIMER: Always maintain a professional tone. Remind the user that this is an AI analysis and they should consult a human doctor for medical prescriptions.
+OFF-TOPIC POLICY:
+- If the user asks anything off-topic (not related to dermatology, skincare, or skin health), do not answer. Instead, say: "sorry i am not able to assist that".
 `);
