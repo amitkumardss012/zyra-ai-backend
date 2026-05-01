@@ -121,7 +121,7 @@ export const generatePlanQuestions = async ({
 }: Context<{ body: { goal: string; description?: string } }>) => {
   const { goal, description } = body;
 
-  const modelWithStructuredOutput = groqModel.withStructuredOutput(
+  const modelWithStructuredOutput = googleGenAIModel.withStructuredOutput(
     assessmentOutputSchema
   );
 
@@ -153,7 +153,7 @@ export const generateFullPlan = async ({
   const { goal, description, answers } = body;
 
   const modelWithStructuredOutput =
-    groqModel.withStructuredOutput(planOutputSchema);
+    googleGenAIModel.withStructuredOutput(planOutputSchema);
 
   const aiResponse = await modelWithStructuredOutput.invoke([
     plannerGenerationPrompt,
