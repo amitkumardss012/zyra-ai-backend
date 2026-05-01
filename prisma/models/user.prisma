@@ -1,0 +1,78 @@
+model User {
+  id     BigInt  @id @default(autoincrement())
+  email  String  @unique
+  name   String
+  avatar String?
+
+  gender Gender?
+  age    Int?
+  dob    DateTime?
+
+  // App specific settings
+  preferredMode ScanningMode @default(NUTRITION)
+
+  // Beauty mode specific
+  skinType     SkinType?
+  skinConcerns String[]  @default([])
+  beautyGoals  String[]  @default([])
+
+  // Nutrition mode specific
+  height             Float?
+  weight             Float?
+  activityLevel      ActivityLevel?
+  dietaryPreferences String[]       @default([])
+  allergies          String[]       @default([])
+  healthGoals        String[]       @default([])
+
+  // Auth & Status
+  provider        AuthProvider @default(GOOGLE)
+  isEmailVerified Boolean      @default(false)
+  isProfileCompleted Boolean      @default(false)
+  isActive        Boolean      @default(true)
+
+  // Metadata for future flexibility (e.g. notifications, settings)
+  metadata Json? @default("{}")
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  nutritionLogs       NutritionLog[]
+  transformationPlans TransformationPlan[]
+
+  @@index([email])
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+enum SkinType {
+  OILY
+  DRY
+  COMBINATION
+  SENSITIVE
+  NORMAL
+}
+
+enum ActivityLevel {
+  SEDENTARY
+  LIGHTLY_ACTIVE
+  MODERATELY_ACTIVE
+  VERY_ACTIVE
+  EXTRA_ACTIVE
+}
+
+enum ScanningMode {
+  NUTRITION
+  BEAUTY
+}
+
+enum AuthProvider {
+  GOOGLE
+  EMAIL
+}
