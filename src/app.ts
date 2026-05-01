@@ -26,7 +26,7 @@ const app = new Elysia()
 
 app.get("/", () =>
   Response.json(
-    { message: "Hello World", success: true },
+    { message: "implemented ci cd", success: true },
     { status: 200, statusText: "OK" },
   ),
 );
