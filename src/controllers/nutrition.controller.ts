@@ -1,4 +1,4 @@
-import { HumanMessage } from "@langchain/core/messages";
+import { AIMessage, BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { Context } from "elysia";
 import { googleGenAIModel, groqModel } from "../ai/llm/model";
 import {
@@ -98,28 +98,44 @@ export const scanFoodController = async ({
 export const chatWithNutritionist = async ({
   body,
   user,
-}: Context<{ body: { messages: string } }> & {
+}: Context<{ body: { messages: { role: "user" | "assistant"; content: string }[] } }> & {
   user: User;
 }) => {
   const { messages } = body;
 
-  const response = await groqModel.invoke([
-    nutritionAssistantPrompt,
-    new HumanMessage(messages),
-  ]);
+  // Initialize history with the system prompt
+  const history: BaseMessage[] = [nutritionAssistantPrompt];
+
+  // Map the incoming client-side history to LangChain message types
+  // This keeps the chat stateful on the client side while letting the AI see the context
+  messages.forEach((msg) => {
+    if (msg.role === "user") {
+      history.push(new HumanMessage(msg.content));
+    } else if (msg.role === "assistant") {
+      history.push(new AIMessage(msg.content));
+    }
+  });
+
+  // Invoke the AI model with the full history
+  const response = await groqModel.invoke(history);
 
   return SuccessResponse(
     "Chat response",
     response.content,
     statusCodes.SUCCESS,
-    "CHAT_RESPONSE",
+    "CHAT_RESPONSE"
   );
 };
 
 export const generatePlanQuestions = async ({
   body,
-}: Context<{ body: { goal: string; description?: string } }>) => {
+  user,
+}: Context<{ body: { goal: string; description?: string } }> & { user: User }) => {
   const { goal, description } = body;
+
+  const userProfile = await prisma.user.findUnique({
+    where: { id: user.id },
+  });
 
   const modelWithStructuredOutput = googleGenAIModel.withStructuredOutput(
     assessmentOutputSchema
@@ -127,9 +143,24 @@ export const generatePlanQuestions = async ({
 
   const aiResponse = await modelWithStructuredOutput.invoke([
     plannerAssessmentPrompt,
-    new HumanMessage(
-      `Goal: ${goal}\nDescription: ${description || "None provided"}`
-    ),
+    new HumanMessage(`
+      Goal: ${goal}
+      Description: ${description || "None provided"}
+      
+      User Profile (Already Known):
+      ${userProfile ? JSON.stringify({
+        age: userProfile.age,
+        gender: userProfile.gender,
+        height: userProfile.height,
+        weight: userProfile.weight,
+        activityLevel: userProfile.activityLevel,
+        dietaryPreferences: userProfile.dietaryPreferences,
+        allergies: userProfile.allergies,
+        healthGoals: userProfile.healthGoals,
+      }, null, 2) : "None provided"}
+      
+      IMPORTANT: Generate questions to ask for information that is NOT in the profile above.
+    `),
   ]);
 
   return SuccessResponse(
@@ -152,6 +183,10 @@ export const generateFullPlan = async ({
 }> & { user: User }) => {
   const { goal, description, answers } = body;
 
+  const userProfile = await prisma.user.findUnique({
+    where: { id: user.id },
+  });
+
   const modelWithStructuredOutput =
     googleGenAIModel.withStructuredOutput(planOutputSchema);
 
@@ -161,7 +196,19 @@ export const generateFullPlan = async ({
       Goal: ${goal}
       Description: ${description || "None provided"}
       
-      User Answers:
+      User Profile:
+      ${userProfile ? JSON.stringify({
+        age: userProfile.age,
+        gender: userProfile.gender,
+        height: userProfile.height,
+        weight: userProfile.weight,
+        activityLevel: userProfile.activityLevel,
+        dietaryPreferences: userProfile.dietaryPreferences,
+        allergies: userProfile.allergies,
+        healthGoals: userProfile.healthGoals,
+      }, null, 2) : "None provided"}
+      
+      User Assessment Answers:
       ${answers.map((a) => `Q: ${a.questionText}\nA: ${a.answer}`).join("\n\n")}
     `),
   ]);
@@ -178,8 +225,8 @@ export const generateFullPlan = async ({
       carbsGrams: aiResponse.carbsGrams,
       fatsGrams: aiResponse.fatsGrams,
       assessment: answers as any,
-      dietSchedule: aiResponse.dietSchedule as any,
-      workoutRoutine: aiResponse.workoutRoutine as any,
+      dietSchedule: aiResponse.dietPlan as any,
+      workoutRoutine: aiResponse.workoutPlan as any,
       guidelines: aiResponse.guidelines as any,
     },
   });

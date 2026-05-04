@@ -40,34 +40,31 @@ export const planOutputSchema = z.object({
   proteinGrams: z.number(),
   carbsGrams: z.number(),
   fatsGrams: z.number(),
-  durationDays: z.number(),
-  dietSchedule: z.array(
+  durationDays: z.number().describe("Total days to achieve the goal"),
+  dietPlan: z.array(
     z.object({
-      mealName: z.string(),
-      time: z.string(),
-      items: z.array(z.string()),
-      calories: z.number(),
+      day: z.string().describe("e.g. Monday, Day 1"),
+      breakfast: z.string(),
+      lunch: z.string(),
+      dinner: z.string(),
     })
-  ),
-  workoutRoutine: z.array(
+  ).length(7).describe("7-day diet plan with 3 meals each"),
+  workoutPlan: z.array(
     z.object({
       day: z.string(),
-      focus: z.string(),
       exercises: z.array(
         z.object({
           name: z.string(),
-          sets: z.number(),
-          reps: z.string(),
-          notes: z.string().optional(),
+          duration: z.string().describe("How much time or sets/reps"),
         })
       ),
     })
-  ),
+  ).length(7).describe("7-day workout routine"),
   guidelines: z.object({
-    toEat: z.array(z.string()),
-    toAvoid: z.array(z.string()),
-    tips: z.array(z.string()),
-  }),
+    toEat: z.array(z.string()).describe("Recommended foods for this goal"),
+    toAvoid: z.array(z.string()).describe("Foods to avoid"),
+    tips: z.array(z.string()).describe("Expert pro tips for success"),
+  }).describe("Strategic overview and nutritional guidelines"),
 });
 
 export type NutritionOutput = z.infer<typeof nutritionOutputSchema>;

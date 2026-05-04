@@ -3,8 +3,12 @@ import { Elysia } from "elysia";
 import { rateLimit } from "elysia-rate-limit";
 import { errorHandler } from "./middlewares/error.middleware";
 import router from "./routes";
+import { logger } from "@bogeychan/elysia-logger";
+
+
 
 const app = new Elysia()
+  .use(logger())
   .use(
     cors({
       origin: ["http://localhost:3000", "https://zyra-ai-web.vercel.app"],

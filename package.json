@@ -8,6 +8,7 @@
     "postinstall": "bunx prisma generate"
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "^0.1.10",
     "@elysiajs/cors": "^1.4.1",
     "@elysiajs/jwt": "^1.4.1",
     "@langchain/core": "^1.1.41",

@@ -18,7 +18,12 @@ const router = new Elysia({ prefix: "/nutrition" })
   .post("/scan-food", scanFoodController, { body: scanFoodSchema })
   .post("/chat", chatWithNutritionist, {
     body: z.object({
-      messages: z.string(),
+      messages: z.array(
+        z.object({
+          role: z.enum(["user", "assistant"]),
+          content: z.string(),
+        })
+      ),
     }),
   })
   .post("/plan/questions", generatePlanQuestions, {
